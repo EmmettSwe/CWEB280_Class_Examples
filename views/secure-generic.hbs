@@ -1,0 +1,16 @@
+<div class="p-5 mb-4 bg-gradient rounded-3">
+    <div class="container-fluid py-5 ">
+        <h1 class="display-5 fw-bold">{{title}}</h1>
+        {{#each payload}}
+            <p>{{@key}}: {{this}}</p>
+        {{/each}}
+        {{#if action}}
+            <!--hide form if the user had already submitted it -->
+        <form action="{{action}}" method="post">
+            <!--we need to pass the jwt aroud to each page we visit in this case we are using a hidden input-->
+            <input type="hidden" name="access_token" value="{{token}}"></input>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        {{/if}}
+    </div>
+</div>

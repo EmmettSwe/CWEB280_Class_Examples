@@ -1,0 +1,23 @@
+<form action="/secure" method="post">
+    <h1>{{title}}</h1>
+    <!-- Email -->
+    <div class="mb-3">
+        <label for="email" class="form-label">Email:</label>
+        <input type="email" class="form-control {{#if err.email}}is-invalid{{/if}}" placeholder="Enter email"
+               name="email" id="email" value="{{submittedEmail}}">
+        <div class="invalid-feedback">
+            <p>{{err.email}}</p>
+        </div>
+    </div>
+
+    <!-- Password-->
+    <div class="mb-3">
+        <label for="pwd" class="form-label">Password:</label>
+        <input type="password" class="form-control {{#if err.pwd}}is-invalid{{/if}}" placeholder="Enter password"
+               name="pwd" id="pwd" value="{{submittedPassword}}">
+        <div class="invalid-feedback">
+            <p>{{err.pwd}}</p>
+        </div>
+    </div>
+    <button class="btn btn-primary">LOGIN</button>
+</form>
