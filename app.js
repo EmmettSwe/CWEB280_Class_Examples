@@ -7,6 +7,7 @@ const logger = require('morgan')
 const indexRouter = require('./routes/index')
 const usersRouter = require('./routes/users')
 const examplesRouter = require('./routes/examples')
+const secureRouter = require('./routes/secure')
 
 const app = express()
 
@@ -24,6 +25,7 @@ app.use('/', indexRouter)
 app.use('/users', usersRouter)
 app.use('/bw', express.static(path.join(__dirname, '/node_modules/bootswatch/dist')))
 app.use('/examples', examplesRouter)
+app.use('/secure', secureRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
