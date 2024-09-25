@@ -1,0 +1,27 @@
+<h1>{{title}}</h1>
+<p>Welcome {{myPosition}}: {{myName}}</p>
+<div class="card p-3">
+    <h2>Determine Random Number</h2>
+    {{randomNum}} is
+    {{#if randomIsEven}}
+        <i class="text-success">EVEN</i>
+    {{else}}
+        <i class="text-danger">ODD</i>
+    {{/if}}
+</div>
+<div>
+    {{#each names}}
+        <li>{{this}}</li>
+    {{/each}}
+</div>
+<!-- TODO output person info first by looping, then by using the path to the attributes in the person object -->
+<div class="card p-3">
+    <h2>Output Person Data 2 ways</h2>
+    {{#each person}}
+        {{@key}}: {{this}}<br>
+    {{/each}}
+    {{#with person}}
+        <li>Name: {{name}}</li>
+        <li>Age: {{age}}</li>
+    {{/with}}
+</div>

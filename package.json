@@ -1,0 +1,31 @@
+{
+  "name": "lo1-basicserver",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node-dev ./bin/www"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "bootswatch": "^5.3.3",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "^4.19.2",
+    "express-validator": "^7.2.0",
+    "hbs": "^4.2.0",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "multer": "^1.4.5-lts.1"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.1.0",
+    "@eslint/js": "^9.9.1",
+    "eslint": "^8.57.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-promise": "^6.6.0",
+    "globals": "^15.9.0",
+    "node-dev": "^8.0.0"
+  }
+}
