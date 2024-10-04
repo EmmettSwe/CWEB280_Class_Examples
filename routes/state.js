@@ -44,15 +44,26 @@ router.post('/cookie', (req, res, next) => {
 })
 
 router.get('/session', (req, res, next) => {
+  // create a new property in the session obj and se it vale
+  // both name and value from the users input via the form
+  req.session[req.body.name] = req.body.value
   res.render('set-session', {
     title: 'GET - Session',
     // Just for debugging
-    activeSession: JSON.stringify(req.session, null, 4)
-
+    activeSession: JSON.stringify(req.session, null, 4),
+    sessionID: req.sessionID
   })
 })
 
 router.post('/session', (req, res, next) => {
-
+  // create a new property in the session obj and se it vale
+  // both name and value from the users input via the form
+  req.session[req.body.name] = req.body.value
+  res.render('set-session', {
+    title: 'POST - Session',
+    // Just for debugging
+    activeSession: JSON.stringify(req.session, null, 4),
+    sessionID: req.sessionID
+  })
 })
 module.exports = router
