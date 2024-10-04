@@ -1,4 +1,5 @@
 const express = require('express')
+const { body } = require('express-validator')
 const router = express.Router()
 /* eslint-disable max-len */
 /** ***********************
@@ -40,5 +41,18 @@ router.post('/cookie', (req, res, next) => {
     activeCookies: req.cookies, // cookies sent to the server
     postedValues: req.body
   })
+})
+
+router.get('/session', (req, res, next) => {
+  res.render('set-session', {
+    title: 'GET - Session',
+    // Just for debugging
+    activeSession: JSON.stringify(req.session, null, 4)
+
+  })
+})
+
+router.post('/session', (req, res, next) => {
+
 })
 module.exports = router
