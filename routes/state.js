@@ -42,28 +42,54 @@ router.post('/cookie', (req, res, next) => {
     postedValues: req.body
   })
 })
-
+/** ***********************
+ * GET Set Session
+ */
 router.get('/session', (req, res, next) => {
-  // create a new property in the session obj and se it vale
-  // both name and value from the users input via the form
-  req.session[req.body.name] = req.body.value
   res.render('set-session', {
-    title: 'GET - Session',
-    // Just for debugging
-    activeSession: JSON.stringify(req.session, null, 4),
-    sessionID: req.sessionID
+    title: 'GET - Set Session',
+    sessionID: req.sessionID,
+    activeSession: JSON.stringify(req.session, null, 4) // session nested object structure
   })
 })
-
+/** ***********************
+ * POST Set Session
+ */
 router.post('/session', (req, res, next) => {
-  // create a new property in the session obj and se it vale
-  // both name and value from the users input via the form
-  req.session[req.body.name] = req.body.value
+// declare callback function for session actions
+  const callback = (err) => {
+    if (err) throw err
+  }
+  let sess
+  // determine the purpose of the post
+  switch (req.body.purpose) {
+    case 'regenerate':
+      // you should call regen when you login a user – to get a new session id
+      req.session.regenerate(callback)
+      break
+    case 'destroy':
+      // call destroy when you want logout a user
+      req.session.destroy(callback)
+      break
+    case 'reload':
+      req.session.reload(callback)
+      break
+    default:
+      // if the session does not contain the posted category - then initialize to an empty object
+      if (req.body?.category.length > 0) {
+        if (!req.session[req.body.category]) {
+          req.session[req.body.category] = {}
+        }
+      }
+      // determine id new session name and value are part of a category or root session object
+      sess = req.body.category ? req.session[req.body.category] : req.session
+      sess[req.body.name] = req.body.value
+  }
   res.render('set-session', {
-    title: 'POST - Session',
-    // Just for debugging
-    activeSession: JSON.stringify(req.session, null, 4),
-    sessionID: req.sessionID
+    title: 'POST - Set Session',
+    sessionID: req.sessionID, // the session id used to uniquely id the current user
+    activeSession: JSON.stringify(req.session, null, 4), // session nested object structure
+    postedValues: req.body // remember what was posted
   })
 })
 module.exports = router
